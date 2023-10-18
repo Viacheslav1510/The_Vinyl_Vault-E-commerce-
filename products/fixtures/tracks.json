@@ -1,0 +1,145 @@
+[
+    {
+        "pk": 1,
+        "model": "products.track",
+        "fields": {
+            "album": 9,
+            "name": "Come Together",
+            "track_number": 1,
+            "length": 4.21,
+            "artist": "The Beatles"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "products.track",
+        "fields": {
+            "album": 9,
+            "name": "Something",
+            "track_number": 2,
+            "length": 3.03,
+            "artist": "The Beatles"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "products.track",
+        "fields": {
+            "album": 9,
+            "name": "Maxwell's Silver Hammer",
+            "track_number": 3,
+            "length": 3.27,
+            "artist": "The Beatles"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "products.track",
+        "fields": {
+            "album": 9,
+            "name": "Oh! Darling",
+            "track_number": 4,
+            "length": 3.27,
+            "artist": "The Beatles"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "products.track",
+        "fields": {
+            "album": 9,
+            "name": "Octopus's Garden",
+            "track_number": 5,
+            "length": 2.51,
+            "artist": "The Beatles"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "products.track",
+        "fields": {
+            "album": 9,
+            "name": "I Want You (She's So Heavy)",
+            "track_number": 6,
+            "length": 7.47,
+            "artist": "The Beatles"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "products.track",
+        "fields": {
+            "album": 1,
+            "name": "Give Life Back To Music",
+            "track_number": 1,
+            "length": 4.35,
+            "artist": "Daft Punk"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "products.track",
+        "fields": {
+            "album": 1,
+            "name": "The Game Of Love",
+            "track_number": 2,
+            "length": 5.22,
+            "artist": "Daft Punk"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "products.track",
+        "fields": {
+            "album": 1,
+            "name": "Giorgio By Moroder",
+            "track_number": 3,
+            "length": 9.04,
+            "artist": "Daft Punk"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "products.track",
+        "fields": {
+            "album": 1,
+            "name": "Within",
+            "track_number": 4,
+            "length": 3.48,
+            "artist": "Daft Punk"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "products.track",
+        "fields": {
+            "album": 1,
+            "name": "Instant Crush",
+            "track_number": 5,
+            "length": 5.37,
+            "artist": "Daft Punk"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "products.track",
+        "fields": {
+            "album": 1,
+            "name": "Lose Yourself To Dance",
+            "track_number": 6,
+            "length": 5.54,
+            "artist": "Daft Punk"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "products.track",
+        "fields": {
+            "album": 1,
+            "name": "Get Lucky",
+            "track_number": 7,
+            "length": 6.09,
+            "artist": "Daft Punk"
+        }
+    }
+]

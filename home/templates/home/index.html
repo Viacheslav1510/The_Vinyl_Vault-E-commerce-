@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container-fluid home-container">
+    <div class="row">
+        <div class="col-sm-12 col-lg-7">
+            <h1 class="index-text">Discover Your New Favorite Album at Our Music Store</h1>
+            <hr class="main-divider my-4">
+            <div class="text-center my-5">
+                <a href="{% url 'products' %}" class="btn glowing-btn mt-3">
+                <span class='glowing-txt'>SHO<span class='faulty-letter'>P</span>NOW</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-5">
+            <div class="d-none d-xl-block">
+                <div class="row">
+                    <div class="col-12 d-none d-md-block col-md-5 line-one"></div>
+                    <div class="col-12 d-none d-md-block col-md-5 line-two"></div>
+                    <div class="col-12 d-none d-md-block col-md-5 line-three"></div>
+                    <div class="col-12 d-none d-md-block col-md-5 line-four"></div>
+                </div>
+            </div>
+            <img src="{% static 'img/main.jpg' %}" alt="poster" class="main-image">
+        </div>
+    </div>
+</div>
+
+{% endblock %}

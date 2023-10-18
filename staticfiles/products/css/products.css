@@ -1,0 +1,141 @@
+/* containers */
+.products-container {
+    min-height: 90vh;
+    background-color: #D2001A;
+}
+
+.genres-container {
+    background-color: #D2001A;
+    border: none;
+}
+
+.genres-container a {
+    min-width: 110px;
+}
+.banner-divider {
+    height: 5px;
+    width: 30%;
+    background-color: #DAB88B;
+    border-radius: 5px;
+}
+
+.products-detail-container {
+    background-color: #D8CCA3;
+}
+
+.add-to-bag {
+    display: inherit;
+}
+
+.add-cart-button {
+    font-size: 0;
+}
+
+.fa-opencart {
+    font-size: 20px;
+}
+
+.custom-select {
+    width: 40%;
+}
+.products-image {
+    height: 100%;
+    width: 100%;
+    min-height: 370px;
+    max-height: 370px;
+}
+
+.mt-100{
+    margin-top:100px
+}
+
+.product-wrapper, .product-img-container{
+    overflow: hidden;
+    position: relative
+}
+
+.mb-45{
+    margin-bottom: 45px
+}
+
+.product-action{
+    bottom: 0px;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    transition: all 0.6s ease 0s
+}
+
+.product-wrapper{
+    border-radius: 10px
+}
+
+.product-img-container >span {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 8px 1.7px rgba(0, 0, 0, 0.06);
+    color: #333;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    left: 70%;
+    letter-spacing: 1px;
+    padding: 3px 12px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: 20px
+}
+
+.product-action-style{
+    background-color: #fff;
+    box-shadow: 0 0 8px 1.7px rgba(0, 0, 0, 0.06);
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.product-action-style >a{
+    color: #979797;
+    line-height: 1;
+    padding: 0 21px;
+    position: relative
+}
+
+.product-action-style >a.action-plus{
+    font-size: 18px
+}
+
+.product-wrapper:hover .product-action{
+    bottom: 20px;
+    opacity: 1
+}
+
+.products-details-image-container {
+    max-height: 350px;
+    width: 100%;
+    height: 80%;
+    background-color: #333;
+}
+
+.product-detail-image {
+    width: 100%;
+    height: 100%;
+}
+
+.decrement-qty {
+    font-size: 0;
+}
+
+.increment-qty {
+    font-size: 0;
+}
+
+.fa-minus {
+    font-size: 15px;
+}
+
+.fa-plus {
+    font-size: 15px;
+}

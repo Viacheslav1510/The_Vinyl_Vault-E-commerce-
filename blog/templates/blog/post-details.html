@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'blog/css/blog.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col-12 col-lg-8 offset-lg-2 text-center title-details">
+            <h1>{{ post.title}}</h1>
+            <p>{{ post.excerpt }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-10 offset-lg-1">
+            <img src="{{ post.featured_image.url }}" alt="{{ post.title }}-image" class="img-details">
+        </div>
+    </div>
+    <div class="row content-row">
+        <div class="col-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 mt-3 content">
+            {{ post.content|safe }}
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

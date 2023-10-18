@@ -1,0 +1,329 @@
+{% load active_link_tags %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  {% block meta %}
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Welcome to our online music store The Vinyl Vault! We offer a vast selection of CDs and vinyl records from your favorite artists and genres, all conveniently available at your fingertips. Shop with us for unbeatable prices and fast shipping across Ireland.">
+  <meta name="keywords"
+    content="music, CD, vinyl, records, Ireland, albums, artists, online store, gifts, gift ideas, music store Ireland, misuc shop, music shop near me, music gifts, music gifts ideas, buy music albums online, vinyl vault, The Vinyl Vault">
+  {% endblock %}
+
+  {% block extra_meta %}
+  {% endblock %}
+
+  {% block corecss %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&display=swap">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
+  <link rel="manifest" href="{% static 'img/site.webmanifest' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link href="//cdn-images.mailchimp.com/embedcode/classic-071822.css" rel="stylesheet" type="text/css">
+  {% endblock %}
+
+  {% block extra_css %}
+  {% endblock %}
+
+  {% block corejs %}
+
+  <script src="https://kit.fontawesome.com/0f9cf7d513.js" crossorigin="anonymous"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    
+  <script src="https://js.stripe.com/v3/"></script>
+  {% endblock %}
+
+  {% block extra_js %}
+  {% endblock %}
+
+  <title>The Vinyl Vault {% block extra_title %}{% endblock %}</title>
+</head>
+
+<body>
+  <header>
+    <!-- Logo -->
+    <nav class="navbar navbar-expand-lg navbar-dark p-2">
+      <a class="navbar-brand main-logo-link text-danger" href="{% url 'home' %}">
+        <i class="fa-solid fa-compact-disc fa-2x"></i><span class="ml-1">TVV</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          {% url 'home' as home_view %}
+          <li class="nav-item {% if request.get_full_path == home_view %} active {% endif%}">
+            <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <!-- Shop Dropdown -->
+          <li class="nav-item dropdown {% active_link 'products' 'active' %}">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+              Shop
+            </a>
+            <div class="dropdown-menu">
+              {% for genre in genres_list %}
+              <a class="dropdown-item text-muted p-2"
+                href="{% url 'products' %}?genre={{genre.name}}">{{ genre.friendly_name }}</a>
+              {% endfor %}
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item text-muted" href="{% url 'products' %}">All Albums</a>
+            </div>
+            <!-- Blog -->
+          <li class="nav-item {% active_link 'blog' 'active' %}">
+            <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+          </li>
+          <!-- Contact -->
+          <li class="nav-item {% active_link 'contact' 'active' %}">
+            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+          </li>
+        </ul>
+        <!-- Search Box -->
+        <div class="container">
+          <div class="row ml-lg-auto">
+            <form method="GET" action="{% url 'products' %}">
+              <div class="input-group w-80">
+                <input class="form-control border rounded" type="text" name="q" aria-label="Search"
+                  placeholder="Search our site">
+                <div class="input-group-append">
+                  <button class="form-control btn border btn-outline-light rounded ml-2" type="submit">
+                    Search
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <ul class="navbar-nav mr-auto mr-lg-1 ml-lg-1 ms-lg-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <div class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
+              {% if request.user.is_authenticated %}
+              <i class="fa-brands fa-napster text-danger fa-2x"></i>
+              {% else %}
+              <i class="fa-brands fa-napster text-white fa-2x"></i>
+              {% endif %}
+            </div>
+            <!-- Login Dropdown -->
+            <div class="dropdown-menu">
+              {% if request.user.is_authenticated %}
+              {% if request.user.is_superuser %}
+              <a class="dropdown-item" href="{% url 'add_product' %}">Add Product</a>
+              {% endif %}
+              <a href="{% url 'profile' %}" class="dropdown-item">Profile</a>
+              <a href="{% url 'wishlist' %}" class="dropdown-item">Wishlist</a>
+              <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+              {% else %}
+              <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+              <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+              {% endif %}
+            </div>
+          </li>
+        </ul>
+        <!-- Bag -->
+        <ul class="navbar-nav me-auto ml-lg-3 mr-lg-3 ms-lg-auto mb-2 mb-lg-0">
+          <li class="list-inline-item">
+            <a class="{% if grand_total %}text-white font-weight-bold{% else %}text-danger{% endif %} nav-link"
+              href="{% url 'bag' %}">
+              <div>
+                <div><i class="fa-brands fa-opencart fa-lg text-white {% if grand_total %}text-danger{% endif %}"
+                    aria-hidden="true"></i></div>
+                <p class="my-0">
+                  {% if grand_total %}
+                  €{{ grand_total|floatformat:2 }}
+                  {% else %}
+                  €0.00
+                  {% endif %}
+                </p>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  {% if messages %}
+  <div class="message-container">
+    {% for message in messages %}
+    {% with message.level as level %}
+    {% if level == 40 %}
+    {% include 'includes/toasts/toast_error.html' %}
+    {% elif level == 30 %}
+    {% include 'includes/toasts/toast_warning.html' %}
+    {% elif level == 25 %}
+    {% include 'includes/toasts/toast_success.html' %}
+    {% else %}
+    {% include 'includes/toasts/toast_info.html' %}
+    {% endif %}
+    {% endwith %}
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% block page_header %}
+  {% endblock %}
+
+  {% block content %}
+  {% endblock %}
+  <!-- Footer taken from MDBootstrap.com -->
+  <footer class="text-center text-lg-start text-muted">
+    <!-- Section: Mailchimp Signup Form -->
+    <div class="d-flex justify-content-center justify-content-lg-between p-2 border-bottom">
+      <div id="mc_embed_signup" class="mx-auto text-white">
+        <form
+          action="https://herokuapp.us21.list-manage.com/subscribe/post?u=930eaa6a5fabb57f4aaf77ac0&amp;id=dc88e1f8aa&amp;f_id=00bfb3e1f0"
+          method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
+          target="_blank" novalidate>
+          <div id="mc_embed_signup_scroll">
+            <h2>Subscribe</h2>
+            <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+            <div class="mc-field-group">
+              <label for="mce-EMAIL">Email Address <span class="asterisk">*</span>
+              </label>
+              <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" required>
+              <span id="mce-EMAIL-HELPERTEXT" class="helper_text"></span>
+            </div>
+            <div id="mce-responses" class="clear foot">
+              <div class="response" id="mce-error-response" style="display:none"></div>
+              <div class="response" id="mce-success-response" style="display:none"></div>
+            </div>
+            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+              <label for="hiden-input">Hiden</label>
+              <input type="text" name="b_930eaa6a5fabb57f4aaf77ac0_dc88e1f8aa" tabindex="-1" value="" id="hiden-input"></div>
+            <div class="optionalParent">
+              <div class="clear foot">
+                <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+                <p class="brandingLogo"><a href="http://eepurl.com/iqOe8g"
+                    title="Mailchimp - email marketing made easy and fun"><img
+                      src="https://eep.io/mc-cdn-images/template_images/branding_logo_text_light_dtp.svg" alt="mailchimp-logo"></a></p>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+    <!-- Section: Links  -->
+    <section>
+      <div class="container text-center text-md-start pt-5">
+        <div class="row">
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Information: Name/Educational Notice -->
+            <h2 class="text-uppercase custom-heading custom-heading fw-bold mb-4 text-white">
+              <i class="fa-solid fa-compact-disc"></i><span class="ml-1">The Vinyl Vault</span>
+            </h2>
+            <p>This site is created for educational purposes only.</p>
+            <!-- Socials -->
+            <p>
+              <a class="text-reset text-decoration-none fs-3 p-2" href="https://github.com/Viacheslav1510/CI_PP5_VV" rel="noopener noreferrer nofollow"
+                target="_blank"><i class="fa-brands fa-square-github fa-2x text-white"></i><span
+                  class="sr-only">GitHub</span></a>
+              <a class="text-reset text-decoration-none fs-3 p-2"
+                href="https://www.facebook.com/profile.php?id=100092395216693" rel="noopener noreferrer nofollow"
+                target="_blank"><i class="fab fa-facebook-f fa-2x text-white"></i><span
+                  class="sr-only">Facebook</span></a>
+            </p>
+          </div>
+
+          <!-- Links -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <h2 class="text-uppercase custom-heading fw-bold mb-4 text-white">
+              Services
+            </h2>
+            <p>
+              <a href="{% url 'products' %}" class="text-reset">Shop</a>
+            </p>
+            <p>
+              <a href="{% url 'wishlist' %}" class="text-reset">Wishlist</a>
+            </p>
+            <p>
+              <a href="{% url 'blog' %}" class="text-reset">Blog</a>
+            </p>
+          </div>
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <h2 class="text-uppercase custom-heading fw-bold mb-4 text-white">
+              Links
+            </h2>
+            <p>
+              {% if request.user.is_authenticated %}
+              <a href="{% url 'profile' %}" class="text-reset">Orders</a>
+              {% else %}
+              <a href="{% url 'account_login' %}" class="text-reset">Orders</a>
+              {% endif %}
+            </p>
+            <p>
+              <a href="{% url 'contact' %}" class="text-reset">Contact Us</a>
+            </p>
+            <p>
+              <a href="https://www.privacypolicygenerator.info/live.php?token=Tc75AuiUZAjgG5TjBIu9eIdPRvGnuOfS"
+                rel="noopener noreferrer nofollow" target="_blank" class="text-reset">Privacy Policy</a>
+            </p>
+          </div>
+
+          <!-- Contact -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <h2 class="text-uppercase custom-heading fw-bold mb-4 text-white">Contact</h2>
+            <p><i class="fas fa-home me-3 text-secondary"></i> Tralee, Ireland</p>
+            <p>
+              <i class="fas fa-envelope me-3 text-secondary"></i>
+              tvv@gmail.com
+            </p>
+            <p><i class="fas fa-phone me-3 text-secondary"></i> +353 85 123 4567</p>
+            <p><i class="fas fa-print me-3 text-secondary"></i> +353 85 123 4567</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Copyright -->
+    <div class="text-center p-4 text-white">
+      © 2023 Copyright:
+      <a class="text-reset fw-bold" href="{% url 'home' %}">The Vinyl Vault</a>
+    </div>
+
+  </footer>
+
+  {% block postloadjs %}
+  <script>
+    $('.toast').toast('show');
+  </script>
+  <script defer src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+  <script>
+    (function ($) {
+      window.fnames = new Array();
+      window.ftypes = new Array();
+      fnames[0] = 'EMAIL';
+      ftypes[0] = 'email';
+      fnames[1] = 'FNAME';
+      ftypes[1] = 'text';
+      fnames[2] = 'LNAME';
+      ftypes[2] = 'text';
+      fnames[3] = 'ADDRESS';
+      ftypes[3] = 'address';
+      fnames[4] = 'PHONE';
+      ftypes[4] = 'phone';
+      fnames[5] = 'BIRTHDAY';
+      ftypes[5] = 'birthday';
+    }(jQuery));
+    var $mcj = jQuery.noConflict(true);
+  </script>
+  {% endblock %}
+
+
+</body>
+
+</html>

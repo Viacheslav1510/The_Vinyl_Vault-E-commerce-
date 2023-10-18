@@ -1,0 +1,119 @@
+[
+    {
+      "pk": 1,
+      "model": "products.album",
+      "fields": {
+        "sku": "pp5001340155",
+        "name": "Random Access Memories - Daft Punk",
+        "description": "Random Access Memories is the fourth and final studio album by the French electronic duo Daft Punk, released on 17 May 2013 through Columbia Records. It pays tribute to late 1970s and early 1980s American music, particularly from Los Angeles.",
+        "price": 53.99,
+        "genre": 1,
+        "rating": 4.6,
+        "image": "daft_punk.jpg"
+      }
+    },
+    {
+      "pk": 2,
+      "model": "products.album",
+      "fields": {
+        "sku": "pp5001600425",
+        "name": "Disconnected - Jan Blomqvist",
+        "description": " “Disconnected” draws from heady themes of broken connections, incoherent narratives, and escapes from reality, exploring the meaning of being disconnected in thirteen tracks. Gradually released across 3 mini albums over the summer, now the complete piece has been released, connecting the disconnected narrative and aiming for insight into the behaviors and necessities of our day, age, and generation.",
+        "price": 46.00,
+        "genre": 1,
+        "rating": 4.3,
+        "image": "jan.jpg"
+      }
+    },
+    {
+      "pk": 3,
+      "model": "products.album",
+      "fields": {
+        "sku": "pp5001730010",
+        "name": "20 Years Forward Ever Backward Never - Cosmic Gate",
+        "description": "Nic & Bossi have called on the redoubtably future-minded talents of Ilan Bluestone, Andrew Bayer and others to prepare 'Be Your Sound', 'Fire Wire' and others for next-decade clubfloor glory. 20 Years - [Forward Ever, Backward Never] is an LP without precedent - a 'greatest hits' the likes of which you've never",
+        "price": 48.00,
+        "genre": 1,
+        "rating": 4.7,
+        "image": "cosmic.jpg"
+      }
+    },
+    {
+      "pk": 4,
+      "model": "products.album",
+      "fields": {
+        "sku": "pp5001890157",
+        "name": "GREATEST HITS - QUEEN",
+        "description": "Commonly referred to as the Red Greatest Hits, it features most of the '70s tracks absent from Classic Queen (including 'Another One Bites the Dust', 'We Will Rock You', 'We Are the Champions' and 'Killer Queen').",
+        "price": 62.99,
+        "genre": 2,
+        "rating": 5.0,
+        "image": "queen.jpg"
+      }
+    },
+    {
+      "pk": 5,
+      "model": "products.album",
+      "fields": {
+        "sku": "pp5002111605",
+        "name": "The Notorious B.I.G. - 'Ready to Die' (1994)",
+        "description": "Ready to Die marked the precise moment when hip-hop’s golden age transitioned into its modern age, the height of New York hip-hop, and the sound of the greatest rapper of all time at the absolute top of his powers.",
+        "price": 38.50,
+        "genre": 3,
+        "rating": 4.7,
+        "image": "notorious.jpg"
+      }
+    },
+    {
+      "pk": 6,
+      "model": "products.album",
+      "fields": {
+        "sku": "pp5002260206",
+        "name": "Outkast - 'Stankonia' (2000)",
+        "description": "By the turn of the millennium, Outkast were the standard bearers for Southern hip-hop, a regional form unfairly derided as less sophisticated than rap's coastal variants. Stankonia finds harmony in the region's myriad forms — booty bass and HBCU marching bands, protean crunk and trap, psychedelic P-funk and organic neo-soul",
+        "price": 37.99,
+        "genre": 3,
+        "rating": 4.7,
+        "image": "outkast.jpeg"
+      }
+    },
+    {
+      "pk": 7,
+      "model": "products.album",
+      "fields": {
+        "sku": "pp5002440521",
+        "name": "Jay-Z - 'The Blueprint' (2001)",
+        "description": "After his landmark debut, Reasonable Doubt, Jay-Z spent much of the late Nineties fighting to prove he was a chart contender and a worthy heir to his late friend Biggie. By 2001, he could sit back and relax, flowing effortlessly over the choicest crop of throwback-soul beats he ever bought, from an ascendant Just Blaze and a new guy from Chicago named Kanye West.",
+        "price": 59.00,
+        "genre": 3,
+        "rating": 4.8,
+        "image": "jay-z.jpg"
+      }
+    },
+    {
+      "pk": 8,
+      "model": "products.album",
+      "fields": {
+        "sku": "pp5002601115",
+        "name": "Stevie Wonder - 'Songs in the Key of Life'",
+        "description": "The album's mastery of many styles remains astonishing, but the feat might not have meant so much had Wonder not delivered some of his most impassioned political art as well, like the autobiographical “I Wish,” the takedown of wealthy complacency “Village Ghetto Land,” and, perhaps most movingly, “Black Man,” in which he runs down a funky list of global Afro-diasporic aspirations and heroes. Songs in the Key of Life linked all this together, in Wonder's all-encompassing innervision.",
+        "price": 36.99,
+        "genre": 4,
+        "rating": 4.9,
+        "image": "wonder.jpg"
+      }
+    },
+    {
+      "pk": 9,
+      "model": "products.album",
+      "fields": {
+        "sku": "pp5002690715",
+        "name": "The Beatles - Abbey Road",
+        "description": " Lennon, McCartney, and Harrison reputedly sang more three-part harmonies here than on any other Beatles album. That warm feeling — a sense of an increasingly divided band warmly coming together as friends — may be one reason Abbey Road has become the most beloved Beatles album of all time.",
+        "price": 169.99,
+        "genre": 2,
+        "rating": 5,
+        "image": "beatles.jpg"
+      }
+    }
+]

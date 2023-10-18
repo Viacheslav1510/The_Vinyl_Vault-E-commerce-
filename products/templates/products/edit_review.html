@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_title %} | Update Review {%endblock %}
+
+<!-- Additional CSS -->
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid h-100">
+    <div class="row offset-1 review-section">
+        <div class="col text-center mt-3">
+            <h2 class="page-title">
+                <strong>Update Review</strong>
+            </h2>
+        </div>
+    </div>
+    <hr class="w-50">
+    <div class="row edit-review">
+        <div class="col-6 offset-3 my-3">
+            <form action="{% url 'edit_review' review.id %}" method="POST">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <input type="submit" value="Update Review" class="btn btn-success">
+                <a href="{% url 'product_detail' album.id %}" class="btn rounded-1 btn-dark">
+                    <span>
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    Back to Product
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

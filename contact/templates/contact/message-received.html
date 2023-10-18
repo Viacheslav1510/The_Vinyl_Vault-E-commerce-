@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'contact/css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 mt-5">
+            <div>
+                <h1 class="text-center">Message Received</h1>
+            </div>
+            <div class="text-center pt-5">
+                <h5>We will be in touch with you soon</h5>
+                <h2 class="fw-bold mb-4">
+                    <i class="fa-solid fa-compact-disc fa-2x"></i><span class="ml-1">The Vinyl Vault team</span>
+                </h2>
+                <a href="{% url 'home' %}" class="btn btn-outline-dark my-3">Go home</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

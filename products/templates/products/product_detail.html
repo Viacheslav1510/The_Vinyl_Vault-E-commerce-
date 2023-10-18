@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid products-detail-container pb-5">
+    <div class="row pt-5">
+        <div class="col-12 col-md-6 col-lg-4 py-lg-5">
+            <div class="products-details-image-container rounded-1">
+                <a href="{{ album.image.url }}" data-abc="true" target="_blank">
+                    <img src="{{ album.image.url }}" alt="{{ album.name }}" class="product-detail-image">
+                </a>
+            </div>
+            <div class="mt-3">
+                {% if user.is_authenticated %}
+                <div class="col-12 mb-4">
+                    {% if not in_wishlist %}
+                        <p>Add to my wishlist: <a href="{% url 'add_to_wishlist' album.id user.id %}"><i class="fa fa-heart fa-lg text-danger"></i></a></p>
+                    {% else %}
+                        <p>Remove from my wishlist: <a href="{% url 'remove_from_wishlist' wishlist_item.id %}"><i class="fa fa-heart fa-lg text-secondary"></i></a></p>
+                    {% endif %}
+                </div>
+                {% else %}
+                <div class="col-12 mb-4">
+                    <p><a href="{% url 'account_login' %}">Login</a> or <a href="{% url 'account_signup' %}">Sign Up</a> to add product to wishlist. <i class="fa fa-heart fa-lg"></i></p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-8 pl-lg-5">
+            <h3>{{ album.name }}</h3>
+            <div>
+                {% if request.user.is_superuser %}
+                    <a href="{% url 'delete_product' album.id %}" class="btn btn-danger btn-sm m-1">Delete</a>
+                    <a href="{% url 'edit_product' album.id %}" class="btn btn-dark btn-sm m-1 float-left pl-2 pr-2">  Edit  </a>
+                {% endif %}
+            </div>
+            <p>{{ album.genre.friendly_name }}</p>
+            {% if album.rating %}
+                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ album.rating }} / 5</small>
+            {% else %}
+                <small class="text-muted">No Rating</small>
+            {% endif %}
+            <h5 class="text-muted mt-1">€ {{ album.price }}</h5>
+            <div class="col-12 col-lg-6">
+                <p>{{ album.description }}</p>
+            </div>
+            <form class="form" action="{% url 'add_to_bag' album.id %}" method="POST">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col-5">
+                        <p class="mt-3"><strong>Quantity:</strong></p>
+                        <div class="form-group w-100">
+                            <div class="input-group">
+                                <span class="input-group-prepend">
+                                    <button class="btn btn-outline-secondary btn-number btn-sm decrement-qty"
+                                            data-item_id="{{ album.id }}" id="decrement-qty_{{ album.id }}">
+                                        <span><i class="fa-solid fa-minus"></i></span>
+                                        decrement
+                                    </button>
+                                </span>
+                                <label for="id_qty_{{ album.id }}" hidden="hidden">Hiden</label>
+                                <input class="form-control qty_input" type="number" name="quantity" value="1" min="1" max="5" data-item_id="{{ album.id }}" id="id_qty_{{ album.id }}">
+                                <span class="input-group-append">
+                                    <button class="btn btn-outline-secondary btn-number btn-sm increment-qty"
+                                            data-item_id="{{ album.id }}" id="increment-qty_{{ album.id }}">
+                                        <span><i class="fa-solid fa-plus"></i></span>
+                                        increment
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 pl-0">
+                    <a href="{% url 'products' %}" class="btn btn-outline-dark rounded-1 mt-5">
+                        <span class="icon">
+                            <i class="fa-regular fa-circle-left"></i>
+                        </span>
+                        <span class="text-uppercase">Keep Shopping</span>
+                    </a>
+                    <input type="submit" class="btn btn-danger rounded-3 text-uppercase mt-5" value="Add to Bag">
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                </div>
+            </form>
+                {% if tracks %}
+                <div class="pt-5">
+                    <h5>Tracks:</h5>
+                    <ul class="list-unstyled">
+                    {% for track in tracks %}
+                        <li>{{track.track_number }}. {{ track.name }} ({{ track.length }})</li>
+                    {% endfor %}
+                     </ul>
+                </div>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <div class="mt-5">
+                    <form method="POST" action="{% url 'product_detail' album.id %}">
+                        <p class="ml-2">You can leave your review for this album:</p>
+                        <label for="id_body">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <input type="submit" class="btn btn-success btn-sm" value="Send">
+                    </form>
+                </div>
+                {% else %}
+                <div class="my-3">
+                    Login to leave a review <a href="{% url 'account_login' %}" class="icon">Here.</a>
+                </div>
+                {% endif %}
+                <p>
+                    <a data-toggle="collapse" href="#collapseReviews" role="button" 
+                    aria-expanded="false" aria-controls="collapseReviews" class="btn btn-outline-dark btn-sm mt-2">
+                        See Reviews
+                    </a>
+                </p>
+                <div class="collapse" id="collapseReviews">
+                    <div class="card card-body Reviews-card">
+                    {% if reviews %}
+                        {% for review in reviews %}
+                        <p class="review-username">{{ review.user }}<span class="text-muted">, {{ review.date_created }}</span></p>
+                        <p class="text-black">
+                            {{ review.body }}
+                        </p>
+                        {% if review.user == request.user %}
+                        <div class="d-flex justify-content-end">
+                            <a href="{% url 'edit_review' review.id %}" class="text-primary mr-2">Edit</a>
+                            <a href="{% url 'delete_review' review.id %}" class="text-danger">Delete</a>
+                        </div>
+                        {% endif %}
+                        <hr class="review-body-hr">
+                        {% endfor %}
+                    {% else %}
+                        This album has no reviews...
+                    {% endif %}
+                    </div>
+                </div> 
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script src="{% static 'products/js/quantity_input_script.js' %}"></script>
+{% endblock %}

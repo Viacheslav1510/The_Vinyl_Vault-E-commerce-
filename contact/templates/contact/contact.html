@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'contact/css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row contact-row">
+        <div class="col-12 col-md-7 py-3 contact-form">
+            <div class="row text-center">
+                <div class="col-12">
+            {% if not user.is_authenticated %}
+                    <h2 class="fw-bold mt-3 text-white">Message Us</h2>
+                    <hr>
+                    <div class="row">
+                        <div class="col-8 offset-2">
+                            <p class="text-white">Please login to send a message!</p>
+                            <a href="{% url 'account_login' %}" class="btn btn-success rounded m-2">
+                                <span class="font-weight-bold">Login</span>
+                            </a>
+                            <a href="{% url 'home' %}" class="btn btn-secondary rounded m-2">
+                                <span class="font-weight-bold">Home</span>
+                            </a>
+                        </div>
+                    </div> 
+            {% else %}
+
+            {% if user.is_authenticated %}
+                    <h2 class="fw-bold mt-3 text-white">Send Message</h2>
+                    <hr>
+                    <div class="row">
+                        <div class="col-8 offset-2">
+                            <form method="POST" class="text-white" enctype="multipart/form-data">
+                                {% csrf_token %}
+                
+                                {{ contact_form| crispy }}
+                
+                                <button class="btn btn-outline-light float-right" type="submit">Send</button>
+                            </form>
+                        </div>
+                        <!-- Form Errors from stack overflow -->
+                        {% if contact_form.errors %}
+                        {% for field in contact_form %}
+                        {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                        {% endfor %}
+                        {% endfor %}
+                        {% for error in contact_form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endif %}  
+                </div>   
+            </div>
+        </div>  
+        <div class="col-12 col-md-5 mt-4">
+            <h2 class="text-uppercase custom-heading fw-bold mb-4 text-secondary">Contact</h2>
+            <h4><i class="fas fa-home me-3 text-secondary"></i> Tralee, Ireland</h4>
+            <h4>
+              <i class="fas fa-envelope me-3 text-secondary"></i>
+              tvv@gmail.com
+            </h4>
+            <h4><i class="fas fa-phone me-3 text-secondary"></i> +353 85 123 4567</h4>
+            <h4><i class="fas fa-print me-3 text-secondary"></i> +353 85 123 4567</h4>
+            <div id="map" class="my-5"></div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>  
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQ9ih5qY1upCnqAYhY2qQ7hw_syVMgp0U&callback=initMap"></script>
+    <script src="{% static 'contact/js/map.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,34 @@
+[
+    {
+        "pk": 1,
+        "model": "products.genre",
+        "fields": {
+            "name": "electronic_music",
+            "friendly_name": "Electronic Music"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "products.genre",
+        "fields": {
+            "name": "rock",
+            "friendly_name": "Rock"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "products.genre",
+        "fields": {
+            "name": "hip_hop_music",
+            "friendly_name": "Hip hop music"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "products.genre",
+        "fields": {
+            "name": "popular_music",
+            "friendly_name": "Popular music"
+        }
+    }
+]

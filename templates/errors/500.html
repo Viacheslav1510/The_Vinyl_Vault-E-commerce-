@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid" style="min-height: 100vh;">
+    <div class="row d-flex my-5 justify-content-center">
+        <div class="col-md-10 mx-auto card p-3 mt-5 border border-light">
+            <img src="https://res.cloudinary.com/slava-cloud/image/upload/v1680531102/error-500_u34bq0.png"
+                alt="500 page image" class="mx-auto" style="max-width:100%; max-height: 100%;">
+            <div class="row mx-auto">
+                <div class="col-md-3">
+                    <a href="{% url 'home' %}" class="btn btn-outline-dark">Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

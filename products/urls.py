@@ -1,0 +1,34 @@
+# Imports
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# 3rd party:
+from django.urls import path
+# Internal:
+from . import views
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+urlpatterns = [
+    path('', views.all_products, name='products'),
+    path('<int:product_id>/', views.product_detail, name='product_detail'),
+    path('add-album/', views.add_product, name='add_product'),
+    path(
+        'edit-album/<int:product_id>/',
+        views.edit_product,
+        name='edit_product'
+    ),
+    path(
+        'delete-album/<int:product_id>/',
+        views.delete_product,
+        name='delete_product'
+    ),
+    path(
+        'edit_review/<int:review_id>/',
+        views.edit_review,
+        name='edit_review'
+    ),
+    path(
+        'delete_review/<int:review_id>/',
+        views.delete_review,
+        name='delete_review'
+    ),
+]

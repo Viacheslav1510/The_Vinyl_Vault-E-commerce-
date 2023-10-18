@@ -1,0 +1,26 @@
+#profile-update-form .form-control {
+    color: #000;
+}
+
+
+#id_default_country,
+#id_default_country option:not(:first-child) {
+    color: #000;
+}
+
+#id_default_country option:first-child {
+    color: #aab7c4;
+}
+
+.order-history {
+    background-color: #aab7c4;
+}
+
+.form-group {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    visibility: hidden;
+    font-size: 0;
+}

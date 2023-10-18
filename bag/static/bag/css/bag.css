@@ -1,0 +1,41 @@
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.col {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.col-md-8 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.summary {
+    background-color: #F1EFDC;
+}
+
+
+.qty_input {
+    text-align: center;
+    width: 60px;
+    padding: 3px;
+}
+
+.decrement-qty {
+    font-size: 0;
+}
+
+.increment-qty {
+    font-size: 0;
+}
+
+.fa-minus {
+    font-size: 15px;
+}
+
+.fa-plus {
+    font-size: 15px;
+}
