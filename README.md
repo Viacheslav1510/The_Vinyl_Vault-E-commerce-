@@ -4,7 +4,7 @@
 
 **Developer: Slava Kondriianenko**
 
-Second version of the project for Code Institute portfolio project #5 (first version without a static files because of suspended AWS profile)
+Second version of the project for Code Institute portfolio project #5 (first version without a static files because of suspended AWS profile [click to see previous repo](https://github.com/Viacheslav1510/CI_PP5_VV))
 💻 [Visit live website](https://the-vinyl-vault-89058fa1689b.herokuapp.com/)
 (Ctrl + click to open in new tab)
 
